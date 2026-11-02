@@ -1,0 +1,29 @@
+# Великі / генеровані дані
+llm/data/raw/
+llm/data/pretrain.txt
+llm/data/tok_train.txt
+llm/data/*.bin
+llm/data/*.mask
+
+# Приватне: Telegram
+llm/data/telegram*
+
+# Чекпойнти, логи, експорт
+llm/out/
+llm/export/
+
+# Збірка C
+llm/c/*.exe
+llm/c/*.obj
+llm/c/*.o
+llm/c/dlm
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/

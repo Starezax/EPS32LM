@@ -1,0 +1,137 @@
+{
+  "start": "mood",
+  "addr": ["Дарцю", "Дарцю", "Дарцю", "Дарцю", "рибко", "кицю"],
+  "nodes": {
+    "mood": {
+      "say": ["В тебе хороший настрій?"],
+      "left":  {"label": "Так!",    "next": "good"},
+      "right": {"label": "Не дуже", "next": "bad"}
+    },
+
+    "good": {
+      "say": ["О, це я люблю чути! Тоді тримай ще трохи хорошого.",
+              "Клас! Хай так і буде до вечора.",
+              "От і чудово, {addr}. Що робимо далі?"],
+      "left":  {"label": "Комплімент", "next": "gen_c"},
+      "right": {"label": "Згадаємо?",  "next": "mem_q"}
+    },
+    "gen_c": {
+      "gen": "C",
+      "left":  {"label": "Ще",   "next": "gen_c"},
+      "right": {"label": "Далі", "next": "love_q"}
+    },
+    "love_q": {
+      "say": ["Хочеш, скажу дещо важливе?",
+              "{Addr}, можна я скажу одну річ?"],
+      "left":  {"label": "Кажи",     "next": "gen_l"},
+      "right": {"label": "Згадаємо", "next": "mem_q"}
+    },
+    "gen_l": {
+      "gen": "L",
+      "left":  {"label": "Ще",   "next": "gen_l"},
+      "right": {"label": "Далі", "next": "miss_q"}
+    },
+
+    "mem_q": {
+      "say": ["Що згадаємо?", "Давай щось згадаємо. Що саме?"],
+      "left":  {"label": "Відень", "next": "gen_v"},
+      "right": {"label": "Інше",   "next": "mem_q2"}
+    },
+    "mem_q2": {
+      "say": ["Перше побачення чи Олександрію?"],
+      "left":  {"label": "Побачення",  "next": "gen_d"},
+      "right": {"label": "Рідне село", "next": "gen_o"}
+    },
+    "gen_v": {
+      "gen": "V",
+      "left":  {"label": "Ще",   "next": "gen_v"},
+      "right": {"label": "Далі", "next": "after_mem"}
+    },
+    "gen_d": {
+      "gen": "D",
+      "left":  {"label": "Ще",   "next": "gen_d"},
+      "right": {"label": "Далі", "next": "after_mem"}
+    },
+    "gen_o": {
+      "gen": "O",
+      "left":  {"label": "Ще",   "next": "gen_o"},
+      "right": {"label": "Далі", "next": "after_mem"}
+    },
+    "after_mem": {
+      "say": ["Добре було, правда? Хочу ще багато таких спогадів з тобою.",
+              "Люблю такі згадки. Давай створимо ще більше."],
+      "left":  {"label": "Ще згадки", "next": "mem_q"},
+      "right": {"label": "Далі",      "next": "miss_q"}
+    },
+
+    "miss_q": {
+      "say": ["А ти за мною сумуєш?", "{Addr}, ти за мною сумуєш?"],
+      "left":  {"label": "Так",    "next": "miss_yes"},
+      "right": {"label": "Трішки", "next": "miss_bit"}
+    },
+    "miss_yes": {
+      "say": ["Я теж. Дуже."],
+      "left":  {"label": "Ще",   "next": "gen_m"},
+      "right": {"label": "Далі", "next": "wish_q"}
+    },
+    "miss_bit": {
+      "say": ["Лише трішки? Ну добре. А я сумую сильно."],
+      "left":  {"label": "Ой)",  "next": "gen_m"},
+      "right": {"label": "Далі", "next": "wish_q"}
+    },
+    "gen_m": {
+      "gen": "M",
+      "left":  {"label": "Ще",   "next": "gen_m"},
+      "right": {"label": "Далі", "next": "wish_q"}
+    },
+    "wish_q": {
+      "say": ["Наостанок побажання?"],
+      "left":  {"label": "Давай", "next": "gen_w"},
+      "right": {"label": "Ні",    "next": "end"}
+    },
+    "gen_w": {
+      "gen": "W",
+      "left":  {"label": "Ще",   "next": "gen_w"},
+      "right": {"label": "Далі", "next": "end"}
+    },
+
+    "bad": {
+      "say": ["Ох. Тоді давай я спробую це виправити.",
+              "Буває, {addr}. Чим допомогти?"],
+      "left":  {"label": "Підтримай", "next": "gen_s"},
+      "right": {"label": "Розсміши",  "next": "gen_p"}
+    },
+    "gen_s": {
+      "gen": "S",
+      "left":  {"label": "Ще",   "next": "gen_s"},
+      "right": {"label": "Далі", "next": "better_q"}
+    },
+    "gen_p": {
+      "gen": "P",
+      "left":  {"label": "Ще",   "next": "gen_p"},
+      "right": {"label": "Далі", "next": "better_q"}
+    },
+    "better_q": {
+      "say": ["Ну як, хоч трохи краще?"],
+      "left":  {"label": "Так",     "next": "better_yes"},
+      "right": {"label": "Не дуже", "next": "still_bad"}
+    },
+    "better_yes": {
+      "say": ["От і добре. Може, згадаємо щось хороше?"],
+      "left":  {"label": "Давай",     "next": "mem_q"},
+      "right": {"label": "Ні, дякую", "next": "end"}
+    },
+    "still_bad": {
+      "say": ["Окей. Тоді просто знай: я поруч і я тебе кохаю."],
+      "left":  {"label": "Обійми",   "next": "gen_l"},
+      "right": {"label": "Згадаємо", "next": "mem_q"}
+    },
+
+    "end": {
+      "say": ["Все, не відволікаю. Кохаю тебе, {addr}.",
+              "Гарного тобі дня. Я поруч."],
+      "left":  {"label": "Кохаю", "next": "IDLE"},
+      "right": {"label": "Па-па", "next": "IDLE"}
+    }
+  }
+}
